@@ -1,4 +1,4 @@
-PROGRAMNAME=hexhls
+PROGRAMNAME=color-and-light
 PREFIX=/usr/local
 BINDIR=$(PREFIX)/bin
 

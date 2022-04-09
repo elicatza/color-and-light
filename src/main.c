@@ -5,10 +5,10 @@
 #include <getopt.h>
 #include <stdbool.h>
 
-#include "calc.h"
+#include "rgb.h"
+#include "hsl.h"
 
 struct Flags {
-    bool all;
     bool hue;
     bool saturation;
     bool luminance;
@@ -25,8 +25,8 @@ int main(int argc, char *argv[]) {
     /* Read from stdin */
     {
         int rv;
-        struct RGB rgb_tmp, rgb;
-        struct RGB_f rgb_f;
+        struct RGB rgb;
+        unsigned int red, green, blue;
         struct HSL hsl;
         char input_buffer[8];
 
@@ -35,14 +35,15 @@ int main(int argc, char *argv[]) {
             if (input_buffer[strlen(input_buffer) - 1] == '\n') {
                 /* read full line */
                 /* TODO: aabbcl is valid input */
-                rv = sscanf(input_buffer, "%2x%2x%2x", &rgb_tmp.red, &rgb_tmp.green, &rgb_tmp.blue);
+                rv = sscanf(input_buffer, "%2x%2x%2x", &red, &green, &blue);
                 if (rv == 3) {
-                    rgb = rgb_tmp;
-                    rgb_f = parse_rgb_f(rgb);
+                    rgb.red = (float)red / 255;
+                    rgb.green = (float)green / 255;
+                    rgb.blue = (float)blue / 255;
 
-                    hsl.hue = calculate_hue(rgb_f);
-                    hsl.saturation = calculate_saturation(rgb_f);
-                    hsl.luminance = calculate_luminance(rgb_f);
+                    hsl.hue = hsl_rgb_hue(rgb);
+                    hsl.saturation = hsl_rgb_saturation(rgb);
+                    hsl.luminance = hsl_rgb_luminance(rgb);
 
                     display_hsl(hsl, flags);
 
@@ -69,7 +70,6 @@ struct Flags parse_args(int argc, char *argv[]) {
     struct Flags flags = init_default_falgs();
 
     static struct option long_options[] = {
-        {"all",        no_argument,  NULL,  'a' },
         {"hue",        no_argument,  NULL,  'h' },
         {"saturation", no_argument,  NULL,  's' },
         {"luminance",  no_argument,  NULL,  'l' },
@@ -80,26 +80,19 @@ struct Flags parse_args(int argc, char *argv[]) {
     int option;
     int option_index = 0;
 
-    while ((option = getopt_long(argc, argv, "ahsl", long_options, &option_index)) != EOF) { 
+    while ((option = getopt_long(argc, argv, "hsl", long_options, &option_index)) != EOF) { 
         switch (option) {
-
-            case 'a': 
-                flags.all = true;
-                break;
 
             case 'h':
                 flags.hue = true;
-                flags.all = false;
                 break;
 
             case 's': 
                 flags.saturation = true;
-                flags.all = false;
                 break;
 
             case 'l': 
                 flags.luminance = true;
-                flags.all = false;
                 break;
 
             case ':':
@@ -117,7 +110,6 @@ struct Flags parse_args(int argc, char *argv[]) {
 
 struct Flags init_default_falgs() {
     struct Flags flags = {
-        .all = true,
         .hue = false,
         .saturation = false,
         .luminance = false,

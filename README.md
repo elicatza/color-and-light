@@ -1,5 +1,5 @@
-# Hexhsl
-A program that converts RGB colors in hexadecimal to Hue Saturation Luminance (HSL).
+# Color and Light
+A program that converts color formats to others.
 
 ## Dependecies
 - gcc
@@ -25,3 +25,9 @@ Implement more formating options:
 - Pretty
 - Basic
 - Choose separator
+
+## Template
+RGB: num{sep}{whitespace}num${sep}{whitespace}num or num{sep}num{sep}num
+HSL: num{sep}{whitespace}num${sep}{whitespace}num
+HSV: num{sep}{whitespace}num${sep}{whitespace}num
+HEX: RRGGBB or #RRGGBB
