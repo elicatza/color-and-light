@@ -13,6 +13,12 @@ struct RGB_f {
     float blue;
 };
 
+struct HSL {
+    float hue;
+    float saturation;
+    float luminance;
+};
+
 struct RGB_f parse_rgb_f(struct RGB rgb);
 float get_min_rgb_f(struct RGB_f rgb);
 float get_max_rgb_f(struct RGB_f rgb);
