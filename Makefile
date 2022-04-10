@@ -5,7 +5,7 @@ MANDIR=$(PREFIX)/share/man
 
 
 WARNINGS=-Wall -Wshadow
-COMPILER=gcc -std=gnu89
+COMPILER=gcc -std=gnu89 -lm
 
 
 SRCDIR=src

@@ -6,8 +6,6 @@
 #include <stdbool.h>
 
 #include "rgb.h"
-#include "hsl.h"
-#include "hsv.h"
 
 
 #define FIELD_COUNT 3
@@ -65,16 +63,16 @@ int main(int argc, char *argv[]) {
 
                         if (flags.hsv || flags.hsl) {
                             if (flags.hsl) {
-                                hsl.hue = hsl_rgb_hue(rgb);
-                                hsl.saturation = hsl_rgb_saturation(rgb);
-                                hsl.luminance = hsl_rgb_luminance(rgb);
+                                hsl.hue = rgb_to_hue(rgb);
+                                hsl.saturation = rgb_to_hsl_saturation(rgb);
+                                hsl.luminance = rgb_to_hsl_luminance(rgb);
 
                                 display_hsl(hsl, flags);
                             }
                             if (flags.hsv) {
-                                hsv.hue = hsv_rgb_hue(rgb);
-                                hsv.saturation = hsv_rgb_saturation(rgb);
-                                hsv.value = hsv_rgb_value(rgb);
+                                hsv.hue = rgb_to_hue(rgb);
+                                hsv.saturation = rgb_to_hsv_saturation(rgb);
+                                hsv.value = rgb_to_hsv_value(rgb);
 
                                 display_hsv(hsv, flags);
                             }
