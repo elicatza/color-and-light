@@ -1,6 +1,7 @@
 PROGRAMNAME=color-and-light
 PREFIX=/usr/local
 BINDIR=$(PREFIX)/bin
+MANDIR=$(PREFIX)/share/man
 
 
 WARNINGS=-Wall -Wshadow
@@ -29,6 +30,9 @@ $(PROGRAM): $(OBJECTS)
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) -I$(SRCDIR) -c $< -o $@
 
+doc:
+	mkdir -p $(MANDIR)/man1
+	cp docs/man/color-and-light.1 $(MANDIR)/man1
 
 install:
 	chmod 755 $(PROGRAM)
@@ -38,6 +42,7 @@ install:
 
 uninstall:
 	rm -f $(BINDIR)/$(PROGRAMNAME)
+	rm -f $(MANDIR)/man1/color-and-light.1
 
 clean:
 	rm -f $(PROGRAM) 

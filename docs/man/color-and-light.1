@@ -1,0 +1,48 @@
+.TH COLOR-AND-LIGHT 1 "2022 April" "color-and-light"
+.SH NAME
+color-and-light \- convert HEX colors to HSL and HSV
+.SH SYNOPSIS
+.SY color-and-light
+.RI [ options ]
+.SH DESCRIPTION
+.PP
+.B color-and-light
+is a reads hexadecimal color values from Stdin, and formats them to HSL or HSV.
+Input has to be a hexadecimal number with length 6, followed by a newline character.
+You can specify output format with
+.IR options "."
+.SH OPTIONS
+.PP
+Information
+.RS
+.TP
+.BR \-h ", " \-\-help
+Show help text.
+.TP
+.BR \-\-version
+Show color-and-light's version.
+.RE
+.PP
+Output
+.RS
+.TP
+.BR \-l ", " \-\-hsl
+Convert input to HSL.
+.TP
+.BR \-v ", " \-\-hsv
+Convert input to HSL.
+.TP
+.BR \-F \ \fIfields\fR ", " \fB\-\-fields\fR =\fIfields\fR
+Provide
+.RI FIELDS
+that you want to extract from output.
+.RI FIELDS
+are numbers ranging from 1 to 3, that enables the selected columns.
+If "13" is entered, columns 1 and 3 are enabled, and column 2 is disabled.
+.RE
+.SH AUTHOR
+Originally written by elicatza.
+.UR https://github.com/elicatza
+.UE
+.SH SEE ALSO
+.BR wc (1)

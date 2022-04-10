@@ -10,7 +10,7 @@ A program that converts HEX colors to HSL and HSV.
 git clone "https://github.com/elicatza/color-and-light"
 cd color-and-light
 make
-sudo make install
+sudo make install doc
 ```
 
 ## Uninstall
@@ -25,9 +25,5 @@ Implement more formating options:
 - Pretty
 - Basic
 - Choose separator
-
-## Template
-RGB: num{sep}{whitespace}num${sep}{whitespace}num or num{sep}num{sep}num
-HSL: num{sep}{whitespace}num${sep}{whitespace}num
-HSV: num{sep}{whitespace}num${sep}{whitespace}num
-HEX: RRGGBB or #RRGGBB
+- Read from file
+- Read extra arguments
