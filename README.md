@@ -1,5 +1,5 @@
 # Color and Light
-A program that converts color formats to others.
+A program that converts HEX colors to HSL and HSV.
 
 ## Dependecies
 - gcc
@@ -7,16 +7,16 @@ A program that converts color formats to others.
 
 ## Install
 ```sh
-git clone "https://github.com/elicatza/hexhsl"
-cd hexhsl
+git clone "https://github.com/elicatza/color-and-light"
+cd color-and-light
 make
 sudo make install
 ```
 
 ## Uninstall
 ```sh
-git clone "https://github.com/elicatza/hexhsl"
-cd hexhsl
+git clone "https://github.com/elicatza/color-and-light"
+cd color-and-light
 sudo make uninstall
 ```
 
