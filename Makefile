@@ -23,8 +23,8 @@ OBJECTS := $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SOURCES))
 default: makedir all
 
 makedir:
-	mkdir -p $(OBJDIR)
-	mkdir -p $(OUTDIR)
+	@mkdir -p $(OBJDIR)
+	@mkdir -p $(OUTDIR)
 
 all: $(PROGRAM)
 
@@ -53,4 +53,4 @@ clean:
 	rm -f $(OBJDIR)/*
 
 
-.PHONY: all $(PROGRAM) $(OBJDIR)/%.o clean install uninstall makedir default
+.PHONY: all install uninstall clean makedir default doc
