@@ -20,12 +20,16 @@ SOURCES := $(wildcard $(SRCDIR)/*.c)
 OBJECTS := $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SOURCES))
 
 
-all: $(PROGRAM)
+default: makedir all
 
+makedir:
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OUTDIR)
+
+all: $(PROGRAM)
 
 $(PROGRAM): $(OBJECTS)
 	$(CC) $^ -o $@
-
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) -I$(SRCDIR) -c $< -o $@
@@ -49,4 +53,4 @@ clean:
 	rm -f $(OBJDIR)/*
 
 
-.PHONY: all $(PROGRAM) $(OBJDIR)/%.o clean install uninstall
+.PHONY: all $(PROGRAM) $(OBJDIR)/%.o clean install uninstall makedir default
